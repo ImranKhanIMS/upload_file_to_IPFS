@@ -25,6 +25,7 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
+    <br /> <br />
       <input type="file" onChange={(e) => {
         if (e.target.files) {
           setFile(e.target.files[0]);
@@ -32,7 +33,7 @@ export default function Home() {
       }} />
       <button onClick={uploadToIpfs}>Upload</button>
 
-      <img src={img?img:''} alt="ipfs image" />
+      {/* <img src={img?img:''} alt="ipfs image" /> */}
     </div>
   );
 }
