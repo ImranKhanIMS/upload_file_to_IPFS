@@ -1,15 +1,44 @@
 import { ThirdwebProvider } from "@thirdweb-dev/react";
 import "../styles/globals.css";
+import { useEffect, useState } from 'react';
+import { ethers } from 'ethers';
 
-// This is the chain your dApp will work on.
-// Change this to the chain your app is built for.
-// You can also import additional chains from `@thirdweb-dev/chains` and pass them directly.
+// ABI
+import GreetingABI from "../artifacts/contracts/Lock.sol/Lock.json";
+
+// Deployed Greeting Address
+const greetingAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
+
 const activeChain = "ethereum";
 
 function MyApp({ Component, pageProps }) {
+
+  const [owner, setOwner] = useState("");
+
+  // Helper Functions
+  const requestAccount = async () => {
+    await window.ethereum.request({ method: 'eth_requestAccounts' });
+  }
+
+  // Getting name and age from Greeting
+  const fetchData = async () => {
+    if (window.ethereum) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const contract = new ethers.Contract(greetingAddress, GreetingABI.abi, provider);
+      try {
+        const owner = await contract.owner();
+        setOwner(owner);
+        console.log(owner);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
   return (
     <ThirdwebProvider activeChain={activeChain}>
       <Component {...pageProps} />
+      <button onClick={fetchData}>fetchData</button>
     </ThirdwebProvider>
   );
 }
