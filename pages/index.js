@@ -1,6 +1,5 @@
-import { useStorage, useStorageUpload } from "@thirdweb-dev/react";
+import { useStorageUpload } from "@thirdweb-dev/react";
 import styles from "../styles/Home.module.css";
-import { NextPage } from 'next';
 import { useState } from "react";
 import { ethers } from 'ethers';
 
@@ -13,12 +12,8 @@ const greetingAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
 export default function Home() {
 
   const [file, setFile] = useState();
-  const [img, setImg] = useState();
 
   const [counter, setCounter] = useState("");
-
-  // array to store mapping struct 'store'
-  const [store, setStore] = useState([]);
 
   // test map array
   let [mapArr, setMapArr] = useState([]);
@@ -31,9 +26,6 @@ export default function Home() {
   const [cnic, setCnic] = useState("");
   const [image, setImage] = useState("");
 
-  // for uploading image
-  // const [img, setImg] = useState();
-
   const { mutateAsync: upload } = useStorageUpload();
 
   const uploadToIpfs = async () => {
@@ -45,7 +37,6 @@ export default function Home() {
       }
     })
 
-    setImg(uploadUrl);
     console.log('Upload URL: ', uploadUrl);
   }
 
@@ -57,12 +48,6 @@ export default function Home() {
       try {
         const counter = await contract.counter();
         setCounter(counter);
-
-        // getting mapping struct data and storing in an array state 'store'
-        const store = await contract.getDriver(2);
-        setStore(store);
-
-        // console.log(counter.toNumber());
 
         let test;
         for (let i=0; i<counter.toNumber()+1; i++) {
@@ -104,7 +89,6 @@ export default function Home() {
           }
         })
     
-        setImg(uploadUrl);
         console.log('Upload URL: ', uploadUrl);
   
         const contract = new ethers.Contract(greetingAddress, GreetingABI.abi, signer);
@@ -156,8 +140,6 @@ export default function Home() {
 
 <button className='button' onClick={pushDriver}>Add Driver</button>
       </div>
-
-      {/* <img src={img?img:''} alt="ipfs image" /> */}
 
       <br /> <br />
 
