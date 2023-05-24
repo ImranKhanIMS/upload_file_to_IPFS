@@ -161,7 +161,7 @@ export default function Home() {
 
       <br /> <br />
 
-      {/* Looping through all the record store in the list of struct (struct array) */}
+      {/* Looping through all the records store in the blockchain (setDriver) */}
 {  
     mapArr.map((rec, i) => {
       return (    
