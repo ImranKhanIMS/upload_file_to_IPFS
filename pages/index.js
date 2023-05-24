@@ -4,10 +4,10 @@ import { useState } from "react";
 import { ethers } from 'ethers';
 
 // ABI
-import GreetingABI from "../artifacts/contracts/DAppDrive.sol/DAppDrive.json";
+import DAppDrive from "../artifacts/contracts/DAppDrive.sol/DAppDrive.json";
 
 // Deployed Greeting Address
-const greetingAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
+const DAppDriveAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
 
 export default function Home() {
 
@@ -44,7 +44,7 @@ export default function Home() {
   const fetchData = async () => {
     if (window.ethereum) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const contract = new ethers.Contract(greetingAddress, GreetingABI.abi, provider);
+      const contract = new ethers.Contract(DAppDriveAddress, DAppDrive.abi, provider);
       try {
         const counter = await contract.counter();
         setCounter(counter);
@@ -91,7 +91,7 @@ export default function Home() {
     
         console.log('Upload URL: ', uploadUrl);
   
-        const contract = new ethers.Contract(greetingAddress, GreetingABI.abi, signer);
+        const contract = new ethers.Contract(DAppDriveAddress, DAppDrive.abi, signer);
         // const transaction = await contract.setDriver(address, name, age, cnic, uploadUrl);
         const transaction = await contract.setDriver(address, name, age, cnic, uploadUrl[0]);
   
