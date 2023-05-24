@@ -3,6 +3,7 @@ import "../styles/globals.css";
 import styles from "../styles/Home.module.css";
 import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
+import Home from './index';
 
 // ABI
 import GreetingABI from "../artifacts/contracts/DAppDrive.sol/DAppDrive.json";
@@ -88,19 +89,20 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ThirdwebProvider activeChain={activeChain}>
-      <Component {...pageProps} /> <br /> <br /> <br />
+      {/* <Component {...pageProps} /> <br /> <br /> <br /> */}
+      <Home />  <br /> <br />
       
       <div className={styles.container}>
-        <button onClick={fetchData}>fetchData</button> <br /> <br />
+        {/* <button onClick={fetchData}>Show from Blockchain</button> <br /> <br /> */}
         
-        <img src={store.image} width="150px" />
+        {/* <img src={store.image} width="150px" /> */}
         {/* <h4>Record: {store.id.toNumber()}</h4> */}
-        <h2>{store.name}</h2>
+        {/* <h2>{store.name}</h2> */}
         {/* <h4>Age: {store.age.toNumber()}</h4> */}
         {/* <h4>CNIC: {store.cardNo.toNumber()}</h4> */}
       </div>
 
-      <div className={styles.container}>
+      {/* <div className={styles.container}>
 <input
         onChange={(e) => setAddress(e.target.value)}
         value={address} type='text' placeholder='Wallet Address' /> &nbsp;
@@ -122,7 +124,7 @@ function MyApp({ Component, pageProps }) {
         value={image} type='file'/> &nbsp;
 
 <button className='button' onClick={pushDriver}>Add Driver</button>
-      </div>
+      </div> */}
     </ThirdwebProvider>
   );
 }
