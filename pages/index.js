@@ -169,9 +169,10 @@ export default function Home() {
         <div className={styles.container}> 
           <h2>{rec[2]}</h2>       
           <img src={rec[5]} width="150px" />
-          {/* <h4>Record: {store.id.toNumber()}</h4> */}
-          {/* <h4>Age: {store.age.toNumber()}</h4> */}
-          {/* <h4>CNIC: {store.cardNo.toNumber()}</h4> */}
+          <h6>Record Number: {rec[0].toNumber()}</h6>
+          <h5>Wallet Address: {rec[1]}</h5>
+          <h5>Age: {rec[3]?rec[3].toNumber():''}</h5>
+          <h5>CNIC: {rec[4]?rec[4].toNumber():''}</h5>
         </div> <br /> <br /> <br />
       </>
         );
