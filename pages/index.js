@@ -11,8 +11,6 @@ const DAppDriveAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
 
 export default function Home() {
 
-  const [file, setFile] = useState();
-
   const [counter, setCounter] = useState("");
 
   // test map array
@@ -27,18 +25,6 @@ export default function Home() {
   const [image, setImage] = useState("");
 
   const { mutateAsync: upload } = useStorageUpload();
-
-  const uploadToIpfs = async () => {
-    const uploadUrl = await upload({
-      data: [file],
-      options: {
-        uploadWithGatewayUrl: true,
-        uploadWithDirectory: true
-      }
-    })
-
-    console.log('Upload URL: ', uploadUrl);
-  }
 
   // Getting name and age from Greeting
   const fetchData = async () => {
@@ -107,12 +93,6 @@ export default function Home() {
   return (
     <div className={styles.container}>
     <br /> <br />
-      <input type="file" onChange={(e) => {
-        if (e.target.files) {
-          setFile(e.target.files[0]);
-        }
-      }} />
-      <button onClick={uploadToIpfs}>Upload</button> <br /> <br />
       <button onClick={fetchData}>Fetch Record</button>
 
     <div className={styles.container}>
