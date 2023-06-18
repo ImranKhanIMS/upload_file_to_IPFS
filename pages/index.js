@@ -2,6 +2,9 @@ import { useStorageUpload } from "@thirdweb-dev/react";
 import styles from "../styles/Home.module.css";
 import { useState } from "react";
 import { ethers } from 'ethers';
+// const pinataSDK = require('@pinata/sdk');
+// const pinata = new pinataSDK({ pinataApiKey: '9b691404018b7c242722', pinataSecretApiKey: '0519522db02d2b58fba1f3700df20551ae92ff1b1a8975d5cfe2168e8c2f40fc' });
+// const pinata = new pinataSDK('9b691404018b7c242722', '0519522db02d2b58fba1f3700df20551ae92ff1b1a8975d5cfe2168e8c2f40fc');
 
 // ABI
 import DAppDrive from "../artifacts/contracts/DAppDrive.sol/DAppDrive.json";
@@ -32,6 +35,7 @@ export default function Home() {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const contract = new ethers.Contract(DAppDriveAddress, DAppDrive.abi, provider);
       try {
+
         const counter = await contract.counter();
         setCounter(counter);
 
